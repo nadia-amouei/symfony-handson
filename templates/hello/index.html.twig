@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div>
+    {% if limit > 0 %}
+        {% for key,message in messages|slice(0, limit) %}
+            <div>
+            <a href="{{ path('app_show_one', {id: key}) }}">
+                {{ message.message }}
+            </a>
+            </div>
+            <div style="color:grey;">
+                {{ include('hello/_message.html.twig', {message: message}) }}
+            </div>
+        {% endfor %}
+    {% else %}
+        <h3>there is noting here</h3>
+    {% endif %}
+</div>
+{% endblock %}
+{% block title %}I change the title!{% endblock %}

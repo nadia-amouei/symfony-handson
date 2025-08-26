@@ -1,0 +1,1 @@
+{"resources":[{"@type":"Symfony\\Component\\Config\\Resource\\FileResource","resource":"/Users/nadia/Desktop/Symfony/symfony-handson/assets/bootstrap.js"},{"@type":"Symfony\\Component\\Config\\Resource\\FileExistenceResource","exists":true,"resource":"/Users/nadia/Desktop/Symfony/symfony-handson/vendor/symfony/stimulus-bundle/assets/dist/loader.js"}]}
