@@ -160,6 +160,6 @@ class __TwigTemplate_91b9288b56d5c43edd333f685c5c865d extends Template
         </a>
     </div>
 </div>
-", "micro_post/_post.html.twig", "/Users/nadia/Desktop/Symfony/symfony-handson/templates/micro_post/_post.html.twig");
+", "micro_post/_post.html.twig", "/Users/nadia/Desktop/Symfony/test/symfony-handson/templates/micro_post/_post.html.twig");
     }
 }

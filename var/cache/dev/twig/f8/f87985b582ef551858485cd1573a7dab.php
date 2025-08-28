@@ -98,7 +98,7 @@ class __TwigTemplate_97a17a2da5a1532ff216f7398dcd50fd extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "bread"));
 
         // line 5
-        yield "-> Add
+        yield "→ Add
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -165,11 +165,11 @@ class __TwigTemplate_97a17a2da5a1532ff216f7398dcd50fd extends Template
 
 {% block title %}Create New Post{% endblock %}
 {% block bread %}
--> Add
+→ Add
 {% endblock %}
 {% block body %}
 {{ include('micro_post/_form.html.twig') }}
 {% endblock %}
-", "micro_post/add.html.twig", "/Users/nadia/Desktop/Symfony/symfony-handson/templates/micro_post/add.html.twig");
+", "micro_post/add.html.twig", "/Users/nadia/Desktop/Symfony/test/symfony-handson/templates/micro_post/add.html.twig");
     }
 }

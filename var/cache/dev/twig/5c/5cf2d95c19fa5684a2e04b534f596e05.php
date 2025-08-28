@@ -269,6 +269,6 @@ class __TwigTemplate_b2a94b4a0a295ea63ddbb2db415fd146 extends Template
         </div>
     </div>
 {% endblock %}
-", "@WebProfiler/Profiler/toolbar_redirect.html.twig", "/Users/nadia/Desktop/Symfony/symfony-handson/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/toolbar_redirect.html.twig");
+", "@WebProfiler/Profiler/toolbar_redirect.html.twig", "/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/toolbar_redirect.html.twig");
     }
 }

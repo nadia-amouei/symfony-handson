@@ -96,6 +96,6 @@ class __TwigTemplate_49f06606f0ec1de8d33c7bbe0df832ab extends Template
 {% else %}
     {{ message.created|date('d/m/Y') }}
 {% endif %}
-", "hello/_message.html.twig", "/Users/nadia/Desktop/Symfony/symfony-handson/templates/hello/_message.html.twig");
+", "hello/_message.html.twig", "/Users/nadia/Desktop/Symfony/test/symfony-handson/templates/hello/_message.html.twig");
     }
 }

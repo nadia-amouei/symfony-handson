@@ -148,6 +148,6 @@ class __TwigTemplate_94a5bc0e8caa378581d778b38d3e160c extends Template
     </div>
 
 {{ form_end(form) }}
-", "micro_post/_form.html.twig", "/Users/nadia/Desktop/Symfony/symfony-handson/templates/micro_post/_form.html.twig");
+", "micro_post/_form.html.twig", "/Users/nadia/Desktop/Symfony/test/symfony-handson/templates/micro_post/_form.html.twig");
     }
 }

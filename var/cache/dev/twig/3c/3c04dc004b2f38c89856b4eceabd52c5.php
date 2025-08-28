@@ -216,6 +216,6 @@ class __TwigTemplate_e4242bb3e6c8d74c6fa414e692887115 extends Template
 </div>
 {% endblock %}
 {% block title %}I change the title!{% endblock %}
-", "hello/index.html.twig", "/Users/nadia/Desktop/Symfony/symfony-handson/templates/hello/index.html.twig");
+", "hello/index.html.twig", "/Users/nadia/Desktop/Symfony/test/symfony-handson/templates/hello/index.html.twig");
     }
 }

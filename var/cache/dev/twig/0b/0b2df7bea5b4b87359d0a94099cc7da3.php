@@ -136,6 +136,6 @@ class __TwigTemplate_3b5697a514a521e5764ca46a9b5c9876 extends Template
     {% endif %}
 
 {% endblock %}
-", "form/fields.html.twig", "/Users/nadia/Desktop/Symfony/symfony-handson/templates/form/fields.html.twig");
+", "form/fields.html.twig", "/Users/nadia/Desktop/Symfony/test/symfony-handson/templates/form/fields.html.twig");
     }
 }

@@ -228,6 +228,6 @@ class __TwigTemplate_ead7d03b547bb3d9bf842067f370eb3a extends Template
     </div>
 
 {% endblock %}
-", "micro_post/show.html.twig", "/Users/nadia/Desktop/Symfony/symfony-handson/templates/micro_post/show.html.twig");
+", "micro_post/show.html.twig", "/Users/nadia/Desktop/Symfony/test/symfony-handson/templates/micro_post/show.html.twig");
     }
 }

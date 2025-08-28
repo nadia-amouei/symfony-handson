@@ -94,15 +94,29 @@ class __TwigTemplate_99c7b99fa4a91567405c05e558c465bc extends Template
         yield "            </div>
 
             <div class=\"text-right\">
-                <div class=\"text-sm text-gray-400 dark:text-gray-500\" >
-                    Login & Registration Goes Here
-                </div>
-                <div>
-                    <a href=\"";
-        // line 38
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_micro_post_add");
-        yield "\">Add New</a>
-                </div>
+                ";
+        // line 34
+        if ((($tmp = $this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("IS_AUTHENTICATED_FULLY")) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+            // line 35
+            yield "                    <div>
+                        <a href=\"";
+            // line 36
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_micro_post_add");
+            yield "\">Add New</a>
+                    </div>
+                ";
+        } else {
+            // line 39
+            yield "                    <div class=\"text-sm text-gray-400 dark:text-gray-500\" >
+                        <a href=\"";
+            // line 40
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            yield "\"> Login</a>
+                    </div>
+                ";
+        }
+        // line 43
+        yield "
             </div>
 
         </div>
@@ -110,11 +124,11 @@ class __TwigTemplate_99c7b99fa4a91567405c05e558c465bc extends Template
         <div class=\"w-full md:w-2/3 mx-auto\">
 
             ";
-        // line 46
+        // line 50
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 46, $this->source); })()), "flashes", ["success"], "method", false, false, false, 46));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 50, $this->source); })()), "flashes", ["success"], "method", false, false, false, 50));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 47
+            // line 51
             yield "                <div class=\"rounded-md- p-2 border-green-300 bg-green-50 border dark:border-green-600 dark:bg-green-700 dark:text-white mb-4\" >";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
             yield "</div>
@@ -123,12 +137,12 @@ class __TwigTemplate_99c7b99fa4a91567405c05e558c465bc extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 49
+        // line 53
         yield "
             ";
-        // line 50
+        // line 54
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 51
+        // line 55
         yield "
         </div>
 
@@ -267,7 +281,7 @@ class __TwigTemplate_99c7b99fa4a91567405c05e558c465bc extends Template
         yield from [];
     }
 
-    // line 50
+    // line 54
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -310,7 +324,7 @@ class __TwigTemplate_99c7b99fa4a91567405c05e558c465bc extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  271 => 50,  259 => 29,  246 => 28,  223 => 11,  212 => 12,  209 => 11,  196 => 10,  185 => 8,  172 => 7,  149 => 5,  132 => 51,  130 => 50,  127 => 49,  118 => 47,  114 => 46,  103 => 38,  94 => 31,  92 => 28,  87 => 26,  72 => 13,  70 => 10,  67 => 9,  65 => 7,  60 => 5,  54 => 1,);
+        return array (  285 => 54,  273 => 29,  260 => 28,  237 => 11,  226 => 12,  223 => 11,  210 => 10,  199 => 8,  186 => 7,  163 => 5,  146 => 55,  144 => 54,  141 => 53,  132 => 51,  128 => 50,  119 => 43,  113 => 40,  110 => 39,  104 => 36,  101 => 35,  99 => 34,  94 => 31,  92 => 28,  87 => 26,  72 => 13,  70 => 10,  67 => 9,  65 => 7,  60 => 5,  54 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -348,12 +362,16 @@ class __TwigTemplate_99c7b99fa4a91567405c05e558c465bc extends Template
             </div>
 
             <div class=\"text-right\">
-                <div class=\"text-sm text-gray-400 dark:text-gray-500\" >
-                    Login & Registration Goes Here
-                </div>
-                <div>
-                    <a href=\"{{ path('app_micro_post_add') }}\">Add New</a>
-                </div>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div>
+                        <a href=\"{{ path('app_micro_post_add') }}\">Add New</a>
+                    </div>
+                {% else %}
+                    <div class=\"text-sm text-gray-400 dark:text-gray-500\" >
+                        <a href=\"{{ path('app_login') }}\"> Login</a>
+                    </div>
+                {% endif %}
+
             </div>
 
         </div>
@@ -371,6 +389,6 @@ class __TwigTemplate_99c7b99fa4a91567405c05e558c465bc extends Template
 
     </body>
 </html>
-", "base.html.twig", "/Users/nadia/Desktop/Symfony/symfony-handson/templates/base.html.twig");
+", "base.html.twig", "/Users/nadia/Desktop/Symfony/test/symfony-handson/templates/base.html.twig");
     }
 }

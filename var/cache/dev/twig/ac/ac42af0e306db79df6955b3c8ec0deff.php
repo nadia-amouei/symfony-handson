@@ -133,6 +133,6 @@ class __TwigTemplate_fa163c137467d29a2414ec2e451d6d52 extends Template
     </div>
 </div>
 {% endblock %}
-", "hello/show_one.html.twig", "/Users/nadia/Desktop/Symfony/symfony-handson/templates/hello/show_one.html.twig");
+", "hello/show_one.html.twig", "/Users/nadia/Desktop/Symfony/test/symfony-handson/templates/hello/show_one.html.twig");
     }
 }

@@ -228,6 +228,6 @@ class __TwigTemplate_1c7af93d0c9b5c4caadbc8f0b8ae673a extends Template
 {{ form_end(form) }}
 
 {% endblock %}
-", "micro_post/comment.html.twig", "/Users/nadia/Desktop/Symfony/symfony-handson/templates/micro_post/comment.html.twig");
+", "micro_post/comment.html.twig", "/Users/nadia/Desktop/Symfony/test/symfony-handson/templates/micro_post/comment.html.twig");
     }
 }

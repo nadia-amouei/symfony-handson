@@ -174,6 +174,6 @@ class __TwigTemplate_5688667d1108e23068fe75244f540080 extends Template
 {% block body %}
 {{ include('micro_post/_form.html.twig') }}
 {% endblock %}
-", "micro_post/edit.html.twig", "/Users/nadia/Desktop/Symfony/symfony-handson/templates/micro_post/edit.html.twig");
+", "micro_post/edit.html.twig", "/Users/nadia/Desktop/Symfony/test/symfony-handson/templates/micro_post/edit.html.twig");
     }
 }
