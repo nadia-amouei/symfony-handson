@@ -77,7 +77,10 @@ class __TwigTemplate_91b9288b56d5c43edd333f685c5c865d extends Template
     </div>
 
     <div class=\"text-sm text-gray-500 dark:text-gray-400\" >
-        <a href=\"#\">user@email.com</a>
+        <a href=\"#\">";
+        // line 21
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 21, $this->source); })()), "author", [], "any", false, false, false, 21), "email", [], "any", false, false, false, 21), "html", null, true);
+        yield "</a>
     </div>
     <div class=\"flex\">
         <a href=\"";
@@ -126,7 +129,7 @@ class __TwigTemplate_91b9288b56d5c43edd333f685c5c865d extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  93 => 26,  89 => 25,  85 => 24,  69 => 11,  63 => 8,  56 => 4,  52 => 3,  48 => 1,);
+        return array (  96 => 26,  92 => 25,  88 => 24,  82 => 21,  69 => 11,  63 => 8,  56 => 4,  52 => 3,  48 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -151,7 +154,7 @@ class __TwigTemplate_91b9288b56d5c43edd333f685c5c865d extends Template
     </div>
 
     <div class=\"text-sm text-gray-500 dark:text-gray-400\" >
-        <a href=\"#\">user@email.com</a>
+        <a href=\"#\">{{ post.author.email }}</a>
     </div>
     <div class=\"flex\">
         <a href=\"{{ path('app_micro_post_edit', {post: post.id}) }}\" class=\"mr-2\" >Edit</a>

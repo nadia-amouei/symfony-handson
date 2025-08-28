@@ -27,6 +27,8 @@ return [
     'app_micro_post_show' => [['post'], ['_controller' => 'App\\Controller\\MicroPostController::showOne'], [], [['variable', '/', '[^/]++', 'post', true], ['text', '/micro-post']], [], [], []],
     'app_micro_post_edit' => [['post'], ['_controller' => 'App\\Controller\\MicroPostController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'post', true], ['text', '/micro-post']], [], [], []],
     'app_micro_post_comment' => [['post'], ['_controller' => 'App\\Controller\\MicroPostController::addComment'], [], [['text', '/comment'], ['variable', '/', '[^/]++', 'post', true], ['text', '/micro-post']], [], [], []],
+    'app_register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], [], []],
+    'app_verify_email' => [[], ['_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], [], [['text', '/verify/email']], [], [], []],
     'App\Controller\HelloController::index' => [['limit'], ['limit' => '3', '_controller' => 'App\\Controller\\HelloController::index'], ['limit' => '\\d+'], [['variable', '/', '\\d+', 'limit', true]], [], [], []],
     'App\Controller\HelloController::showOne' => [['id'], ['_controller' => 'App\\Controller\\HelloController::showOne'], ['id' => '\\d+'], [['variable', '/', '\\d+', 'id', true], ['text', '/messages']], [], [], []],
     'App\Controller\LoginController::index' => [[], ['_controller' => 'App\\Controller\\LoginController::index'], [], [['text', '/login']], [], [], []],
@@ -36,4 +38,6 @@ return [
     'App\Controller\MicroPostController::add' => [[], ['_controller' => 'App\\Controller\\MicroPostController::add'], [], [['text', '/micro-post/add']], [], [], []],
     'App\Controller\MicroPostController::edit' => [['post'], ['_controller' => 'App\\Controller\\MicroPostController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'post', true], ['text', '/micro-post']], [], [], []],
     'App\Controller\MicroPostController::addComment' => [['post'], ['_controller' => 'App\\Controller\\MicroPostController::addComment'], [], [['text', '/comment'], ['variable', '/', '[^/]++', 'post', true], ['text', '/micro-post']], [], [], []],
+    'App\Controller\RegistrationController::register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], [], []],
+    'App\Controller\RegistrationController::verifyUserEmail' => [[], ['_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], [], [['text', '/verify/email']], [], [], []],
 ];

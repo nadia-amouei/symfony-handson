@@ -26,6 +26,7 @@
       <parameter key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</parameter>
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
       <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
+      <parameter key="SymfonyCastsVerifyEmailBundle">SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -79,6 +80,10 @@
       <parameter key="DoctrineFixturesBundle" type="collection">
         <parameter key="path">/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/doctrine/doctrine-fixtures-bundle</parameter>
         <parameter key="namespace">Doctrine\Bundle\FixturesBundle</parameter>
+      </parameter>
+      <parameter key="SymfonyCastsVerifyEmailBundle" type="collection">
+        <parameter key="path">/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src</parameter>
+        <parameter key="namespace">SymfonyCasts\Bundle\VerifyEmail</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -409,6 +414,14 @@
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\MicroPostController"/>
       </call>
     </service>
+    <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\Security\EmailVerifier"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\RegistrationController"/>
+      </call>
+    </service>
     <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
       <argument type="service" id="security.user_password_hasher"/>
@@ -435,6 +448,9 @@
     <service id="App\Form\MicroPostType" class="App\Form\MicroPostType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
     </service>
+    <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
+    </service>
     <service id="App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -450,6 +466,15 @@
     <service id="App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Security\EmailVerifier" class="App\Security\EmailVerifier" autowire="true" autoconfigure="true">
+      <argument type="service" id="symfonycasts.verify_email.helper"/>
+      <argument type="service" id="mailer.mailer"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="App\Security\Voter\MicroPostVoter" class="App\Security\Voter\MicroPostVoter" autowire="true" autoconfigure="true">
+      <tag name="security.voter"/>
+      <argument type="service" id="security.helper"/>
     </service>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory"/>
     <service id="argument_resolver.backed_enum_resolver" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\BackedEnumValueResolver">
@@ -479,7 +504,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.8ChrQP5"/>
+      <argument type="service" id=".service_locator.tTemZ3Z"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1313,6 +1338,7 @@
         <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations</argument>
         <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations</argument>
         <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations</argument>
+        <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/twig-bridge/Resources/views/Email</argument>
@@ -1339,6 +1365,7 @@
         <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations</argument>
         <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations</argument>
         <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations</argument>
+        <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/twig-bridge/Resources/views/Email</argument>
@@ -1437,6 +1464,7 @@
       <argument type="collection">
         <argument>App\Form\CommentType</argument>
         <argument>App\Form\MicroPostType</argument>
+        <argument>App\Form\RegistrationFormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -2210,6 +2238,7 @@
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.ar.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.ar.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.ar.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ar.xlf</argument>
           </argument>
           <argument key="az" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.az.xlf</argument>
@@ -2235,11 +2264,13 @@
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.ca.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.ca.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.ca.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ca.xlf</argument>
           </argument>
           <argument key="cs" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.cs.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.cs.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.cs.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.cs.xlf</argument>
           </argument>
           <argument key="cy" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.cy.xlf</argument>
@@ -2250,26 +2281,31 @@
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.da.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.da.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.da.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.da.xlf</argument>
           </argument>
           <argument key="de" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.de.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.de.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.de.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.de.xlf</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.el.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.el.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.el.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.el.xlf</argument>
           </argument>
           <argument key="en" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.en.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.en.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.en.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.en.xlf</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.es.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.es.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.es.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.es.xlf</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.et.xlf</argument>
@@ -2285,16 +2321,19 @@
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.fa.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.fa.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.fa.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fa.xlf</argument>
           </argument>
           <argument key="fi" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.fi.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.fi.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.fi.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fi.xlf</argument>
           </argument>
           <argument key="fr" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.fr.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.fr.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.fr.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fr.xlf</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.gl.xlf</argument>
@@ -2315,6 +2354,7 @@
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.hu.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.hu.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.hu.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.hu.xlf</argument>
           </argument>
           <argument key="hy" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.hy.xlf</argument>
@@ -2325,16 +2365,19 @@
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.id.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.id.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.id.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.id.xlf</argument>
           </argument>
           <argument key="it" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.it.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.it.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.it.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.it.xlf</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.ja.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.ja.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.ja.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ja.xlf</argument>
           </argument>
           <argument key="lb" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.lb.xlf</argument>
@@ -2355,11 +2398,13 @@
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.mk.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.mk.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.mk.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.mk.xlf</argument>
           </argument>
           <argument key="mn" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.mn.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.mn.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.mn.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.mn.xlf</argument>
           </argument>
           <argument key="my" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.my.xlf</argument>
@@ -2375,6 +2420,7 @@
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.nl.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.nl.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.nl.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle+intl-icu.nl.xlf</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.nn.xlf</argument>
@@ -2390,11 +2436,13 @@
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.pl.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.pl.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.pl.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.pl.xlf</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.pt.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.pt.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.pt.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.pt.xlf</argument>
           </argument>
           <argument key="pt_BR" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.pt_BR.xlf</argument>
@@ -2405,16 +2453,19 @@
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.ro.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.ro.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.ro.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ro.xlf</argument>
           </argument>
           <argument key="ru" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.ru.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.ru.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.ru.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ru.xlf</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.sk.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.sk.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.sk.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.sk.xlf</argument>
           </argument>
           <argument key="sl" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.sl.xlf</argument>
@@ -2455,11 +2506,13 @@
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.tr.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.tr.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.tr.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.tr.xlf</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.uk.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.uk.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.uk.xlf</argument>
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.uk.xlf</argument>
           </argument>
           <argument key="ur" type="collection">
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations/validators.ur.xlf</argument>
@@ -2486,11 +2539,15 @@
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations/validators.zh_TW.xlf</argument>
             <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations/security.zh_TW.xlf</argument>
           </argument>
+          <argument key="sr" type="collection">
+            <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.sr.xlf</argument>
+          </argument>
         </argument>
         <argument key="scanned_directories" type="collection">
           <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/validator/Resources/translations</argument>
           <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/form/Resources/translations</argument>
           <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/security-core/Resources/translations</argument>
+          <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
           <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/translations</argument>
           <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/symfony/framework-bundle/translations</argument>
           <argument>/Users/nadia/Desktop/Symfony/test/symfony-handson/vendor/doctrine/doctrine-bundle/translations</argument>
@@ -2511,6 +2568,7 @@
             <argument>vendor/symfony/validator/Resources/translations</argument>
             <argument>vendor/symfony/form/Resources/translations</argument>
             <argument>vendor/symfony/security-core/Resources/translations</argument>
+            <argument>vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
             <argument>translations</argument>
             <argument>vendor/symfony/framework-bundle/translations</argument>
             <argument>vendor/doctrine/doctrine-bundle/translations</argument>
@@ -3517,7 +3575,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.8ChrQP5"/>
+      <argument type="service" id=".service_locator.tTemZ3Z"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -4109,7 +4167,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.bsa2_tt"/>
+      <argument type="service" id=".service_locator.DbhApSW"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4209,6 +4267,7 @@
       <argument type="collection">
         <argument key="App\Form\CommentType">submit</argument>
         <argument key="App\Form\MicroPostType">submit</argument>
+        <argument key="App\Form\RegistrationFormType">submit</argument>
       </argument>
     </service>
     <service id="validator.builder" class="Symfony\Component\Validator\ValidatorBuilder">
@@ -7658,6 +7717,24 @@
     <service id="doctrine.fixtures.purger.orm_purger_factory" class="Doctrine\Bundle\FixturesBundle\Purger\ORMPurgerFactory">
       <tag name="doctrine.fixtures.purger_factory" alias="default"/>
     </service>
+    <service id="symfonycasts.verify_email.token_generator" class="SymfonyCasts\Bundle\VerifyEmail\Generator\VerifyEmailTokenGenerator">
+      <argument>%env(APP_SECRET)%</argument>
+    </service>
+    <service id="symfonycasts.verify_email.query_utility" class="SymfonyCasts\Bundle\VerifyEmail\Util\VerifyEmailQueryUtility"/>
+    <service id="symfonycasts.verify_email.uri_signer_factory" class="SymfonyCasts\Bundle\VerifyEmail\Factory\UriSignerFactory">
+      <argument>%env(APP_SECRET)%</argument>
+      <argument>signature</argument>
+    </service>
+    <service id="symfonycasts.verify_email.uri_signer" class="Symfony\Component\HttpFoundation\UriSigner">
+      <factory service="symfonycasts.verify_email.uri_signer_factory" method="createUriSigner"/>
+    </service>
+    <service id="symfonycasts.verify_email.helper" class="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelper">
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="symfonycasts.verify_email.uri_signer"/>
+      <argument type="service" id="symfonycasts.verify_email.query_utility"/>
+      <argument type="service" id="symfonycasts.verify_email.token_generator"/>
+      <argument>3600</argument>
+    </service>
     <service id=".instanceof.Symfony\Component\Console\Command\Command.0.App\Command\CreateUserCommand" class="App\Command\CreateUserCommand" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Command\CreateUserCommand.0.App\Command\CreateUserCommand" class="App\Command\CreateUserCommand" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Command\CreateUserCommand" class="App\Command\CreateUserCommand" autowire="true" autoconfigure="true" abstract="true"/>
@@ -7672,6 +7749,10 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\MicroPostController" class="App\Controller\MicroPostController" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Controller\MicroPostController.0.App\Controller\MicroPostController" class="App\Controller\MicroPostController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\MicroPostController" class="App\Controller\MicroPostController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
+    <service id=".instanceof.App\Controller\RegistrationController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.App\Entity\Comment.0.App\Entity\Comment" class="App\Entity\Comment" autowire="true" abstract="true"/>
@@ -7686,6 +7767,8 @@
     <service id=".abstract.instanceof.App\Form\CommentType" class="App\Form\CommentType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\MicroPostType" class="App\Form\MicroPostType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\MicroPostType" class="App\Form\MicroPostType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\MicroPostRepository" class="App\Repository\MicroPostRepository" autowire="true" abstract="true"/>
@@ -7694,6 +7777,8 @@
     <service id=".abstract.instanceof.App\Repository\UserProfileRepository" class="App\Repository\UserProfileRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Security\Core\Authorization\Voter\VoterInterface.0.App\Security\Voter\MicroPostVoter" class="App\Security\Voter\MicroPostVoter" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Security\Voter\MicroPostVoter" class="App\Security\Voter\MicroPostVoter" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.pRu6x_4" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8296,7 +8381,33 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.dkUws00" method="withContext"/>
     </service>
-    <service id=".service_locator.8ChrQP5" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.tEL1pRK" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userPasswordHasher" type="service_closure" id="security.user_password_hasher"/>
+        <argument key="security" type="service_closure" id="security.helper"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\RegistrationController::register()"/>
+      <argument>App\Controller\RegistrationController::register()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.tEL1pRK" method="withContext"/>
+    </service>
+    <service id=".service_locator.KHhLDTq" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="translator" type="service_closure" id="translator.data_collector"/>
+      </argument>
+    </service>
+    <service id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\RegistrationController::verifyUserEmail()"/>
+      <argument>App\Controller\RegistrationController::verifyUserEmail()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.KHhLDTq" method="withContext"/>
+    </service>
+    <service id=".service_locator.tTemZ3Z" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -8309,6 +8420,8 @@
         <argument key="App\Controller\MicroPostController::add" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::add()"/>
         <argument key="App\Controller\MicroPostController::edit" type="service_closure" id=".service_locator.G6JJNc7.App\Controller\MicroPostController::edit()"/>
         <argument key="App\Controller\MicroPostController::addComment" type="service_closure" id=".service_locator.dkUws00.App\Controller\MicroPostController::addComment()"/>
+        <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()"/>
+        <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
         <argument key="App\Controller\LoginController:index" type="service_closure" id=".service_locator.wa9Zqkq.App\Controller\LoginController::index()"/>
@@ -8317,6 +8430,8 @@
         <argument key="App\Controller\MicroPostController:add" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::add()"/>
         <argument key="App\Controller\MicroPostController:edit" type="service_closure" id=".service_locator.G6JJNc7.App\Controller\MicroPostController::edit()"/>
         <argument key="App\Controller\MicroPostController:addComment" type="service_closure" id=".service_locator.dkUws00.App\Controller\MicroPostController::addComment()"/>
+        <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()"/>
+        <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()"/>
       </argument>
     </service>
     <service id=".service_locator.HxALDTI" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8502,11 +8617,12 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.bsa2_tt" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.DbhApSW" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\CommentType" type="service_closure" id="App\Form\CommentType"/>
         <argument key="App\Form\MicroPostType" type="service_closure" id="App\Form\MicroPostType"/>
+        <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="service_closure" id="form.type.file"/>
@@ -8701,6 +8817,10 @@
     </service>
     <service id=".debug.security.voter.security.access.closure_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
       <argument type="service" id="security.access.closure_voter"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id=".debug.security.voter.App\Security\Voter\MicroPostVoter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
+      <argument type="service" id="App\Security\Voter\MicroPostVoter"/>
       <argument type="service" id="debug.event_dispatcher"/>
     </service>
     <service id="security.listener.csrf_protection" class="Symfony\Component\Security\Http\EventListener\CsrfProtectionListener">
@@ -8922,6 +9042,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ZyP9f7K" method="withContext"/>
     </service>
+    <service id=".service_locator.ZyP9f7K.App\Controller\RegistrationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\RegistrationController"/>
+      <argument>App\Controller\RegistrationController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+    </service>
     <service id=".service_locator.7jukgan" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -9117,6 +9243,7 @@
           <argument>App\Controller\HelloController</argument>
           <argument>App\Controller\LoginController</argument>
           <argument>App\Controller\MicroPostController</argument>
+          <argument>App\Controller\RegistrationController</argument>
           <argument>Doctrine\Bundle\DoctrineBundle\Controller\ProfilerController</argument>
         </argument>
       </call>
@@ -9317,6 +9444,7 @@
         <argument type="service" id=".debug.security.voter.security.access.role_hierarchy_voter"/>
         <argument type="service" id=".debug.security.voter.security.access.expression_voter"/>
         <argument type="service" id=".debug.security.voter.security.access.closure_voter"/>
+        <argument type="service" id=".debug.security.voter.App\Security\Voter\MicroPostVoter"/>
       </argument>
       <argument type="service">
         <service class="Symfony\Component\Security\Core\Authorization\Strategy\AffirmativeStrategy">
@@ -10559,9 +10687,10 @@
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
+    <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.8ChrQP5"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.tTemZ3Z"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -10610,6 +10739,8 @@
     <service id=".service_locator.P2.Pka." alias=".service_locator.g2QUtQW"/>
     <service id=".service_locator.vX3bifc" alias=".service_locator.G6JJNc7"/>
     <service id=".service_locator.Q08VjYy" alias=".service_locator.dkUws00"/>
+    <service id=".service_locator.o4KKgIJ" alias=".service_locator.tEL1pRK"/>
+    <service id=".service_locator.l6GrDWv" alias=".service_locator.KHhLDTq"/>
     <service id=".service_locator.9nvaCmp" alias=".service_locator.ZyP9f7K"/>
   </services>
 </container>

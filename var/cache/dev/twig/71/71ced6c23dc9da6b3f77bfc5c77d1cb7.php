@@ -140,8 +140,14 @@ class __TwigTemplate_ead7d03b547bb3d9bf842067f370eb3a extends Template
             <div class=\"flex items-center\">
                 <div class=\"inline-block bg-gray-200 dark:bg-gray-700 rounded-full text-3xl w-8 h-8 ring-2 ring-white dark:ring-gray-600 mr-2\"></div>
                 <div>
-                    <div class=\"font-medium text-gray-800 dark:text-gray-300\">Author</div>
-                    <div class=\"font-light text-gray-500 dark:text-gray-500\" >When</div>
+                    <div class=\"font-medium text-gray-800 dark:text-gray-300\">";
+            // line 18
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "author", [], "any", false, false, false, 18), "email", [], "any", false, false, false, 18), "html", null, true);
+            yield "</div>
+                    <div class=\"font-light text-gray-500 dark:text-gray-500\" >";
+            // line 19
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "created", [], "any", false, false, false, 19), "M j, Y"), "html", null, true);
+            yield "</div>
                 </div>
             </div>
             <div class=\"flex \">
@@ -192,7 +198,7 @@ class __TwigTemplate_ead7d03b547bb3d9bf842067f370eb3a extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  162 => 29,  151 => 24,  139 => 14,  135 => 13,  128 => 10,  115 => 9,  103 => 6,  90 => 5,  65 => 3,  42 => 1,);
+        return array (  168 => 29,  157 => 24,  149 => 19,  145 => 18,  139 => 14,  135 => 13,  128 => 10,  115 => 9,  103 => 6,  90 => 5,  65 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -214,8 +220,8 @@ class __TwigTemplate_ead7d03b547bb3d9bf842067f370eb3a extends Template
             <div class=\"flex items-center\">
                 <div class=\"inline-block bg-gray-200 dark:bg-gray-700 rounded-full text-3xl w-8 h-8 ring-2 ring-white dark:ring-gray-600 mr-2\"></div>
                 <div>
-                    <div class=\"font-medium text-gray-800 dark:text-gray-300\">Author</div>
-                    <div class=\"font-light text-gray-500 dark:text-gray-500\" >When</div>
+                    <div class=\"font-medium text-gray-800 dark:text-gray-300\">{{ comment.author.email }}</div>
+                    <div class=\"font-light text-gray-500 dark:text-gray-500\" >{{ comment.created | date(\"M j, Y\")}}</div>
                 </div>
             </div>
             <div class=\"flex \">
