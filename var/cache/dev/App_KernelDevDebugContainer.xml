@@ -88,6 +88,8 @@
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
+    <parameter key="profiles">/uploads/profiles/</parameter>
+    <parameter key="profiles_directory">/Users/nadia/Desktop/Symfony/test/symfony-handson/public/uploads/profiles/</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -476,6 +478,9 @@
     <service id="App\Form\MicroPostType" class="App\Form\MicroPostType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
     </service>
+    <service id="App\Form\ProfileImageType" class="App\Form\ProfileImageType" autowire="true" autoconfigure="true">
+      <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
+    </service>
     <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
     </service>
@@ -536,7 +541,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.MoFoN79"/>
+      <argument type="service" id=".service_locator.wcoqaoi"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1496,6 +1501,7 @@
       <argument type="collection">
         <argument>App\Form\CommentType</argument>
         <argument>App\Form\MicroPostType</argument>
+        <argument>App\Form\ProfileImageType</argument>
         <argument>App\Form\RegistrationFormType</argument>
         <argument>App\Form\UserProfileType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
@@ -3608,7 +3614,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.MoFoN79"/>
+      <argument type="service" id=".service_locator.wcoqaoi"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -4200,7 +4206,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.5oHZQqL"/>
+      <argument type="service" id=".service_locator.e.rqu69"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4300,6 +4306,7 @@
       <argument type="collection">
         <argument key="App\Form\CommentType">submit</argument>
         <argument key="App\Form\MicroPostType">submit</argument>
+        <argument key="App\Form\ProfileImageType">submit</argument>
         <argument key="App\Form\RegistrationFormType">submit</argument>
         <argument key="App\Form\UserProfileType">submit</argument>
       </argument>
@@ -6222,6 +6229,10 @@
       <call method="addRuntimeLoader">
         <argument type="service" id="twig.runtime_loader"/>
       </call>
+      <call method="addGlobal">
+        <argument>profiles</argument>
+        <argument>/uploads/profiles/</argument>
+      </call>
       <call method="registerUndefinedFilterCallback">
         <argument type="collection">
           <argument type="service" id="twig.missing_extension_suggestor"/>
@@ -7816,6 +7827,8 @@
     <service id=".abstract.instanceof.App\Form\CommentType" class="App\Form\CommentType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\MicroPostType" class="App\Form\MicroPostType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\MicroPostType" class="App\Form\MicroPostType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ProfileImageType" class="App\Form\ProfileImageType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ProfileImageType" class="App\Form\ProfileImageType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UserProfileType" class="App\Form\UserProfileType" autowire="true" abstract="true"/>
@@ -8551,7 +8564,20 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.OzEre6h" method="withContext"/>
     </service>
-    <service id=".service_locator.MoFoN79" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.UjbY5k8" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="slugger" type="service_closure" id="slugger"/>
+        <argument key="users" type="service_closure" id="App\Repository\UserRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.UjbY5k8.App\Controller\SettingsProfileController::profileImage()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\SettingsProfileController::profileImage()"/>
+      <argument>App\Controller\SettingsProfileController::profileImage()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.UjbY5k8" method="withContext"/>
+    </service>
+    <service id=".service_locator.wcoqaoi" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -8576,6 +8602,7 @@
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()"/>
         <argument key="App\Controller\SettingsProfileController::profile" type="service_closure" id=".service_locator.OzEre6h.App\Controller\SettingsProfileController::profile()"/>
+        <argument key="App\Controller\SettingsProfileController::profileImage" type="service_closure" id=".service_locator.UjbY5k8.App\Controller\SettingsProfileController::profileImage()"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
         <argument key="App\Controller\FollowerController:follow" type="service_closure" id=".service_locator.W_NOKY8.App\Controller\FollowerController::follow()"/>
@@ -8596,6 +8623,7 @@
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()"/>
         <argument key="App\Controller\SettingsProfileController:profile" type="service_closure" id=".service_locator.OzEre6h.App\Controller\SettingsProfileController::profile()"/>
+        <argument key="App\Controller\SettingsProfileController:profileImage" type="service_closure" id=".service_locator.UjbY5k8.App\Controller\SettingsProfileController::profileImage()"/>
       </argument>
     </service>
     <service id=".service_locator.HxALDTI" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8781,11 +8809,12 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.5oHZQqL" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.e.rqu69" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\CommentType" type="service_closure" id="App\Form\CommentType"/>
         <argument key="App\Form\MicroPostType" type="service_closure" id="App\Form\MicroPostType"/>
+        <argument key="App\Form\ProfileImageType" type="service_closure" id="App\Form\ProfileImageType"/>
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
         <argument key="App\Form\UserProfileType" type="service_closure" id="App\Form\UserProfileType"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
@@ -10882,7 +10911,7 @@
     <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.MoFoN79"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.wcoqaoi"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -10938,6 +10967,7 @@
     <service id=".service_locator.o4KKgIJ" alias=".service_locator.tEL1pRK"/>
     <service id=".service_locator.l6GrDWv" alias=".service_locator.KHhLDTq"/>
     <service id=".service_locator.hNMhKaf" alias=".service_locator.OzEre6h"/>
+    <service id=".service_locator.KiYp_8Q" alias=".service_locator.UjbY5k8"/>
     <service id=".service_locator.9nvaCmp" alias=".service_locator.ZyP9f7K"/>
   </services>
 </container>

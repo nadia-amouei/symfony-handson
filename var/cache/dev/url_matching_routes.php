@@ -24,6 +24,7 @@ return [
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
         '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
         '/settings/profile' => [[['_route' => 'app_settings_profile', '_controller' => 'App\\Controller\\SettingsProfileController::profile'], null, null, null, false, false, null]],
+        '/settings/profile-image' => [[['_route' => 'app_settings_profile_image', '_controller' => 'App\\Controller\\SettingsProfileController::profileImage'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

@@ -39,6 +39,7 @@ return [
     'app_register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], [], []],
     'app_verify_email' => [[], ['_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], [], [['text', '/verify/email']], [], [], []],
     'app_settings_profile' => [[], ['_controller' => 'App\\Controller\\SettingsProfileController::profile'], [], [['text', '/settings/profile']], [], [], []],
+    'app_settings_profile_image' => [[], ['_controller' => 'App\\Controller\\SettingsProfileController::profileImage'], [], [['text', '/settings/profile-image']], [], [], []],
     'App\Controller\FollowerController::follow' => [['id'], ['_controller' => 'App\\Controller\\FollowerController::follow'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/follow']], [], [], []],
     'App\Controller\FollowerController::unfollow' => [['id'], ['_controller' => 'App\\Controller\\FollowerController::unfollow'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/unfollow']], [], [], []],
     'App\Controller\HelloController::index' => [['limit'], ['limit' => '3', '_controller' => 'App\\Controller\\HelloController::index'], ['limit' => '\\d+'], [['variable', '/', '\\d+', 'limit', true]], [], [], []],
@@ -60,4 +61,5 @@ return [
     'App\Controller\RegistrationController::register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], [], []],
     'App\Controller\RegistrationController::verifyUserEmail' => [[], ['_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], [], [['text', '/verify/email']], [], [], []],
     'App\Controller\SettingsProfileController::profile' => [[], ['_controller' => 'App\\Controller\\SettingsProfileController::profile'], [], [['text', '/settings/profile']], [], [], []],
+    'App\Controller\SettingsProfileController::profileImage' => [[], ['_controller' => 'App\\Controller\\SettingsProfileController::profileImage'], [], [['text', '/settings/profile-image']], [], [], []],
 ];
