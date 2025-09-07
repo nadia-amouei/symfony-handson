@@ -94,41 +94,48 @@ class __TwigTemplate_99c7b99fa4a91567405c05e558c465bc extends Template
         yield "            </div>
 
             <div class=\"text-right\">
-                ";
-        // line 34
+                <div class=\"text-sm text-gray-500 dark:text-gray-400 flex\">
+                    ";
+        // line 35
         if ((($tmp = $this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("IS_AUTHENTICATED_FULLY")) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
-            // line 35
+            // line 36
             yield "                    <div>
                         <a href=\"";
-            // line 36
+            // line 37
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_micro_post_add");
             yield "\">Add New</a>
                     </div>
-                    <div class=\"text-sm text-gray-400 dark:text-gray-500\" >
+                    <div class=\"ml-2\">
                         <a href=\"";
-            // line 39
-            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
-            yield "\"> Logout</a>
+            // line 40
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_settings_profile");
+            yield "\">Profile Settings</a>
                     </div>
-                ";
-        } else {
-            // line 42
-            yield "                    <div class=\"text-sm text-gray-400 dark:text-gray-500\" >
+                    <div class=\"ml-2\">
                         <a href=\"";
             // line 43
-            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            yield "\"> Login</a>
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
+            yield "\">Logout</a>
                     </div>
-                    <div class=\"text-sm text-gray-400 dark:text-gray-500\" >
-                        <a href=\"";
+                    ";
+        } else {
             // line 46
-            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
-            yield "\"> Register</a>
+            yield "                    <div>
+                        <a href=\"";
+            // line 47
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            yield "\">Login</a>
                     </div>
-                ";
+                    <div class=\"ml-2\">
+                        <a href=\"";
+            // line 50
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
+            yield "\">Register</a>
+                    </div>
+                    ";
         }
-        // line 49
-        yield "
+        // line 53
+        yield "                </div>
             </div>
 
         </div>
@@ -136,11 +143,11 @@ class __TwigTemplate_99c7b99fa4a91567405c05e558c465bc extends Template
         <div class=\"w-full md:w-2/3 mx-auto\">
 
             ";
-        // line 56
+        // line 60
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 56, $this->source); })()), "flashes", ["success"], "method", false, false, false, 56));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 60, $this->source); })()), "flashes", ["success"], "method", false, false, false, 60));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 57
+            // line 61
             yield "                <div class=\"rounded-md- p-2 border-green-300 bg-green-50 border dark:border-green-600 dark:bg-green-700 dark:text-white mb-4\" >";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
             yield "</div>
@@ -149,12 +156,12 @@ class __TwigTemplate_99c7b99fa4a91567405c05e558c465bc extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 59
+        // line 63
         yield "
             ";
-        // line 60
+        // line 64
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 61
+        // line 65
         yield "
         </div>
 
@@ -293,7 +300,7 @@ class __TwigTemplate_99c7b99fa4a91567405c05e558c465bc extends Template
         yield from [];
     }
 
-    // line 60
+    // line 64
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -336,7 +343,7 @@ class __TwigTemplate_99c7b99fa4a91567405c05e558c465bc extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  297 => 60,  285 => 29,  272 => 28,  249 => 11,  238 => 12,  235 => 11,  222 => 10,  211 => 8,  198 => 7,  175 => 5,  158 => 61,  156 => 60,  153 => 59,  144 => 57,  140 => 56,  131 => 49,  125 => 46,  119 => 43,  116 => 42,  110 => 39,  104 => 36,  101 => 35,  99 => 34,  94 => 31,  92 => 28,  87 => 26,  72 => 13,  70 => 10,  67 => 9,  65 => 7,  60 => 5,  54 => 1,);
+        return array (  304 => 64,  292 => 29,  279 => 28,  256 => 11,  245 => 12,  242 => 11,  229 => 10,  218 => 8,  205 => 7,  182 => 5,  165 => 65,  163 => 64,  160 => 63,  151 => 61,  147 => 60,  138 => 53,  132 => 50,  126 => 47,  123 => 46,  117 => 43,  111 => 40,  105 => 37,  102 => 36,  100 => 35,  94 => 31,  92 => 28,  87 => 26,  72 => 13,  70 => 10,  67 => 9,  65 => 7,  60 => 5,  54 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -374,22 +381,26 @@ class __TwigTemplate_99c7b99fa4a91567405c05e558c465bc extends Template
             </div>
 
             <div class=\"text-right\">
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <div class=\"text-sm text-gray-500 dark:text-gray-400 flex\">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <div>
                         <a href=\"{{ path('app_micro_post_add') }}\">Add New</a>
                     </div>
-                    <div class=\"text-sm text-gray-400 dark:text-gray-500\" >
-                        <a href=\"{{ path('app_logout') }}\"> Logout</a>
+                    <div class=\"ml-2\">
+                        <a href=\"{{ path('app_settings_profile') }}\">Profile Settings</a>
                     </div>
-                {% else %}
-                    <div class=\"text-sm text-gray-400 dark:text-gray-500\" >
-                        <a href=\"{{ path('app_login') }}\"> Login</a>
+                    <div class=\"ml-2\">
+                        <a href=\"{{ path('app_logout') }}\">Logout</a>
                     </div>
-                    <div class=\"text-sm text-gray-400 dark:text-gray-500\" >
-                        <a href=\"{{ path('app_register') }}\"> Register</a>
+                    {% else %}
+                    <div>
+                        <a href=\"{{ path('app_login') }}\">Login</a>
                     </div>
-                {% endif %}
-
+                    <div class=\"ml-2\">
+                        <a href=\"{{ path('app_register') }}\">Register</a>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
 
         </div>

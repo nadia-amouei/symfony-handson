@@ -59,11 +59,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTime $bannedUntil = null;
+
+    /**
+     * @var Collection<int, self>
+     */
+    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'followers')]
+    #[ORM\JoinTable('followers')]
+    private Collection $follows;
+
+    /**
+     * @var Collection<int, self>
+     */
+    #[ORM\ManyToMany(targetEntity: self::class, mappedBy: 'follows')]
+    private Collection $followers;
+
     public function __construct()
     {
         $this->liked = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->follows = new ArrayCollection();
+        $this->followers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -101,6 +119,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
+
+        if ($this->isVerified) {
+            $roles[] = 'ROLE_WRITER';
+        }
 
         return array_unique($roles);
     }
@@ -259,6 +281,69 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getBannedUntil(): ?\DateTime
+    {
+        return $this->bannedUntil;
+    }
+
+    public function setBannedUntil(?\DateTime $bannedUntil): static
+    {
+        $this->bannedUntil = $bannedUntil;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getFollows(): Collection
+    {
+        return $this->follows;
+    }
+
+    public function follow(self $follow): static
+    {
+        if (!$this->follows->contains($follow)) {
+            $this->follows->add($follow);
+        }
+
+        return $this;
+    }
+
+    public function unfollow(self $follow): static
+    {
+        $this->follows->removeElement($follow);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getFollowers(): Collection
+    {
+        return $this->followers;
+    }
+
+    public function addFollower(self $follower): static
+    {
+        if (!$this->followers->contains($follower)) {
+            $this->followers->add($follower);
+            $follower->follow($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollower(self $follower): static
+    {
+        if ($this->followers->removeElement($follower)) {
+            $follower->unfollow($this);
+        }
 
         return $this;
     }

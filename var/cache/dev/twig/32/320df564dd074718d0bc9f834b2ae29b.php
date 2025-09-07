@@ -97,54 +97,8 @@ class __TwigTemplate_eb6dfec989acf75d64e6f9c7dcdb5d05 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "<div class=\"grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4\" >
-    ";
-        // line 7
-        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["posts"]) || array_key_exists("posts", $context) ? $context["posts"] : (function () { throw new RuntimeError('Variable "posts" does not exist.', 7, $this->source); })())) > 0)) {
-            // line 8
-            yield "        ";
-            $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable((isset($context["posts"]) || array_key_exists("posts", $context) ? $context["posts"] : (function () { throw new RuntimeError('Variable "posts" does not exist.', 8, $this->source); })()));
-            $context['loop'] = [
-              'parent' => $context['_parent'],
-              'index0' => 0,
-              'index'  => 1,
-              'first'  => true,
-            ];
-            if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof \Countable)) {
-                $length = count($context['_seq']);
-                $context['loop']['revindex0'] = $length - 1;
-                $context['loop']['revindex'] = $length;
-                $context['loop']['length'] = $length;
-                $context['loop']['last'] = 1 === $length;
-            }
-            foreach ($context['_seq'] as $context["key"] => $context["post"]) {
-                // line 9
-                yield "            ";
-                yield Twig\Extension\CoreExtension::include($this->env, $context, "micro_post/_post.html.twig", ["post" => $context["post"]]);
-                yield "
-        ";
-                ++$context['loop']['index0'];
-                ++$context['loop']['index'];
-                $context['loop']['first'] = false;
-                if (isset($context['loop']['revindex0'], $context['loop']['revindex'])) {
-                    --$context['loop']['revindex0'];
-                    --$context['loop']['revindex'];
-                    $context['loop']['last'] = 0 === $context['loop']['revindex0'];
-                }
-            }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['key'], $context['post'], $context['_parent'], $context['loop']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 11
-            yield "    ";
-        } else {
-            // line 12
-            yield "        <h3>there is noting here</h3>
-    ";
-        }
-        // line 14
-        yield "</div>
+        yield Twig\Extension\CoreExtension::include($this->env, $context, "micro_post/_post_list.html.twig");
+        yield "
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -176,7 +130,7 @@ class __TwigTemplate_eb6dfec989acf75d64e6f9c7dcdb5d05 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  147 => 14,  143 => 12,  140 => 11,  123 => 9,  105 => 8,  103 => 7,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -186,15 +140,7 @@ class __TwigTemplate_eb6dfec989acf75d64e6f9c7dcdb5d05 extends Template
 {% block title %}All Posts{% endblock %}
 
 {% block body %}
-<div class=\"grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4\" >
-    {% if posts|length > 0 %}
-        {% for key,post in posts %}
-            {{ include('micro_post/_post.html.twig', {post:post}) }}
-        {% endfor %}
-    {% else %}
-        <h3>there is noting here</h3>
-    {% endif %}
-</div>
+{{ include ('micro_post/_post_list.html.twig') }}
 {% endblock %}
 ", "micro_post/index.html.twig", "/Users/nadia/Desktop/Symfony/test/symfony-handson/templates/micro_post/index.html.twig");
     }

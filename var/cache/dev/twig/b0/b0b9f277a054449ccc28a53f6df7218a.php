@@ -71,29 +71,54 @@ class __TwigTemplate_91b9288b56d5c43edd333f685c5c865d extends Template
     </div>
 
     <div>
-        <a href=\"#\">
-            Like <span class=\"px-2 rounded-md bg-gray-200 dark:bg-gray-700\" >0</span>
-        </a>
-    </div>
+        ";
+        // line 15
+        if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 15, $this->source); })()), "likedBy", [], "any", false, false, false, 15), "contains", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 15, $this->source); })()), "user", [], "any", false, false, false, 15)], "method", false, false, false, 15)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+            // line 16
+            yield "                <a href=\"";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_unlike", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 16, $this->source); })()), "id", [], "any", false, false, false, 16)]), "html", null, true);
+            yield "\">
+                    Unlike <span class=\"px-2 rounded-md bg-gray-200 dark:bg-gray-700\">";
+            // line 17
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 17, $this->source); })()), "likedBy", [], "any", false, false, false, 17), "count", [], "any", false, false, false, 17), "html", null, true);
+            yield "</span>
+                </a>
+        ";
+        } else {
+            // line 20
+            yield "                <a href=\"";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_like", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 20, $this->source); })()), "id", [], "any", false, false, false, 20)]), "html", null, true);
+            yield "\">
+                    Like <span class=\"px-2 rounded-md bg-gray-200 dark:bg-gray-700\">";
+            // line 21
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 21, $this->source); })()), "likedBy", [], "any", false, false, false, 21), "count", [], "any", false, false, false, 21), "html", null, true);
+            yield "</span>
+                </a>
+        ";
+        }
+        // line 24
+        yield "    </div>
 
     <div class=\"text-sm text-gray-500 dark:text-gray-400\" >
-        <a href=\"#\">";
-        // line 21
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 21, $this->source); })()), "author", [], "any", false, false, false, 21), "email", [], "any", false, false, false, 21), "html", null, true);
+        <a href=\"";
+        // line 27
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile", ["id" => CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 27, $this->source); })()), "author", [], "any", false, false, false, 27), "id", [], "any", false, false, false, 27)]), "html", null, true);
+        yield "\">";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 27, $this->source); })()), "author", [], "any", false, false, false, 27), "email", [], "any", false, false, false, 27), "html", null, true);
         yield "</a>
     </div>
     <div class=\"flex\">
         <a href=\"";
-        // line 24
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_micro_post_edit", ["post" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 24, $this->source); })()), "id", [], "any", false, false, false, 24)]), "html", null, true);
+        // line 30
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_micro_post_edit", ["post" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 30, $this->source); })()), "id", [], "any", false, false, false, 30)]), "html", null, true);
         yield "\" class=\"mr-2\" >Edit</a>
         <a href=\"";
-        // line 25
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_micro_post_comment", ["post" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 25, $this->source); })()), "id", [], "any", false, false, false, 25)]), "html", null, true);
+        // line 31
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_micro_post_comment", ["post" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 31, $this->source); })()), "id", [], "any", false, false, false, 31)]), "html", null, true);
         yield "\" >
         Comment <span class=\"px-2 rounded-md bg-gray-200 dark:bg-gray-700\" >";
-        // line 26
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 26, $this->source); })()), "comments", [], "any", false, false, false, 26), "count", [], "any", false, false, false, 26), "html", null, true);
+        // line 32
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 32, $this->source); })()), "comments", [], "any", false, false, false, 32), "count", [], "any", false, false, false, 32), "html", null, true);
         yield "</span>
         </a>
     </div>
@@ -129,7 +154,7 @@ class __TwigTemplate_91b9288b56d5c43edd333f685c5c865d extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  96 => 26,  92 => 25,  88 => 24,  82 => 21,  69 => 11,  63 => 8,  56 => 4,  52 => 3,  48 => 1,);
+        return array (  121 => 32,  117 => 31,  113 => 30,  105 => 27,  100 => 24,  94 => 21,  89 => 20,  83 => 17,  78 => 16,  76 => 15,  69 => 11,  63 => 8,  56 => 4,  52 => 3,  48 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -148,13 +173,19 @@ class __TwigTemplate_91b9288b56d5c43edd333f685c5c865d extends Template
     </div>
 
     <div>
-        <a href=\"#\">
-            Like <span class=\"px-2 rounded-md bg-gray-200 dark:bg-gray-700\" >0</span>
-        </a>
+        {% if post.likedBy.contains(app.user) %}
+                <a href=\"{{ path('app_unlike', { id: post.id }) }}\">
+                    Unlike <span class=\"px-2 rounded-md bg-gray-200 dark:bg-gray-700\">{{ post.likedBy.count }}</span>
+                </a>
+        {% else %}
+                <a href=\"{{ path('app_like', { id: post.id }) }}\">
+                    Like <span class=\"px-2 rounded-md bg-gray-200 dark:bg-gray-700\">{{ post.likedBy.count }}</span>
+                </a>
+        {% endif %}
     </div>
 
     <div class=\"text-sm text-gray-500 dark:text-gray-400\" >
-        <a href=\"#\">{{ post.author.email }}</a>
+        <a href=\"{{ path('app_profile', { id: post.author.id }) }}\">{{ post.author.email }}</a>
     </div>
     <div class=\"flex\">
         <a href=\"{{ path('app_micro_post_edit', {post: post.id}) }}\" class=\"mr-2\" >Edit</a>

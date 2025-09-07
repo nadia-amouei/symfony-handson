@@ -393,11 +393,25 @@
         <argument>Creates a new user account</argument>
       </call>
     </service>
+    <service id="App\Controller\FollowerController" class="App\Controller\FollowerController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\FollowerController"/>
+      </call>
+    </service>
     <service id="App\Controller\HelloController" class="App\Controller\HelloController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\HelloController"/>
+      </call>
+    </service>
+    <service id="App\Controller\LikeController" class="App\Controller\LikeController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\LikeController"/>
       </call>
     </service>
     <service id="App\Controller\LoginController" class="App\Controller\LoginController" public="true" autowire="true" autoconfigure="true">
@@ -414,12 +428,26 @@
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\MicroPostController"/>
       </call>
     </service>
+    <service id="App\Controller\ProfileController" class="App\Controller\ProfileController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\ProfileController"/>
+      </call>
+    </service>
     <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <argument type="service" id="App\Security\EmailVerifier"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\RegistrationController"/>
+      </call>
+    </service>
+    <service id="App\Controller\SettingsProfileController" class="App\Controller\SettingsProfileController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\SettingsProfileController"/>
       </call>
     </service>
     <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
@@ -451,6 +479,9 @@
     <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
     </service>
+    <service id="App\Form\UserProfileType" class="App\Form\UserProfileType" autowire="true" autoconfigure="true">
+      <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
+    </service>
     <service id="App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -472,6 +503,7 @@
       <argument type="service" id="mailer.mailer"/>
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
+    <service id="App\Security\UserChecker" class="App\Security\UserChecker" autowire="true" autoconfigure="true"/>
     <service id="App\Security\Voter\MicroPostVoter" class="App\Security\Voter\MicroPostVoter" autowire="true" autoconfigure="true">
       <tag name="security.voter"/>
       <argument type="service" id="security.helper"/>
@@ -504,7 +536,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.tTemZ3Z"/>
+      <argument type="service" id=".service_locator..O1HvVF"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1465,6 +1497,7 @@
         <argument>App\Form\CommentType</argument>
         <argument>App\Form\MicroPostType</argument>
         <argument>App\Form\RegistrationFormType</argument>
+        <argument>App\Form\UserProfileType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -3575,7 +3608,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.tTemZ3Z"/>
+      <argument type="service" id=".service_locator..O1HvVF"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -4167,7 +4200,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.DbhApSW"/>
+      <argument type="service" id=".service_locator.5oHZQqL"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4268,6 +4301,7 @@
         <argument key="App\Form\CommentType">submit</argument>
         <argument key="App\Form\MicroPostType">submit</argument>
         <argument key="App\Form\RegistrationFormType">submit</argument>
+        <argument key="App\Form\UserProfileType">submit</argument>
       </argument>
     </service>
     <service id="validator.builder" class="Symfony\Component\Validator\ValidatorBuilder">
@@ -6647,7 +6681,7 @@
     <service id="security.user_checker" class="Symfony\Component\Security\Core\User\InMemoryUserChecker"/>
     <service id="security.user_checker_locator" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <argument type="collection">
-        <argument key="main" type="service_closure" id="security.user_checker"/>
+        <argument key="main" type="service_closure" id="App\Security\UserChecker"/>
       </argument>
     </service>
     <service id="security.expression_language" class="Symfony\Component\Security\Core\Authorization\ExpressionLanguage">
@@ -7239,7 +7273,7 @@
     </service>
     <service id="security.firewall.map.config.main" class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig">
       <argument>main</argument>
-      <argument>security.user_checker</argument>
+      <argument>App\Security\UserChecker</argument>
       <argument>null</argument>
       <argument>true</argument>
       <argument>false</argument>
@@ -7380,7 +7414,7 @@
     </service>
     <service id="security.listener.user_checker.main" class="Symfony\Component\Security\Http\EventListener\UserCheckerListener">
       <tag name="kernel.event_subscriber" dispatcher="debug.security.event_dispatcher.main"/>
-      <argument type="service" id="security.user_checker"/>
+      <argument type="service" id="App\Security\UserChecker"/>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener">
       <argument type="service" id="security.token_storage"/>
@@ -7738,9 +7772,16 @@
     <service id=".instanceof.Symfony\Component\Console\Command\Command.0.App\Command\CreateUserCommand" class="App\Command\CreateUserCommand" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Command\CreateUserCommand.0.App\Command\CreateUserCommand" class="App\Command\CreateUserCommand" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Command\CreateUserCommand" class="App\Command\CreateUserCommand" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\FollowerController" class="App\Controller\FollowerController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\FollowerController" class="App\Controller\FollowerController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\FollowerController" class="App\Controller\FollowerController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\HelloController" class="App\Controller\HelloController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\HelloController" class="App\Controller\HelloController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\HelloController" class="App\Controller\HelloController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\LikeController" class="App\Controller\LikeController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\LikeController" class="App\Controller\LikeController" autowire="true" abstract="true"/>
+    <service id=".instanceof.App\Controller\LikeController.0.App\Controller\LikeController" class="App\Controller\LikeController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\LikeController" class="App\Controller\LikeController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Controller\LoginController.0.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" abstract="true"/>
@@ -7749,10 +7790,18 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\MicroPostController" class="App\Controller\MicroPostController" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Controller\MicroPostController.0.App\Controller\MicroPostController" class="App\Controller\MicroPostController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\MicroPostController" class="App\Controller\MicroPostController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ProfileController" class="App\Controller\ProfileController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ProfileController" class="App\Controller\ProfileController" autowire="true" abstract="true"/>
+    <service id=".instanceof.App\Controller\ProfileController.0.App\Controller\ProfileController" class="App\Controller\ProfileController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ProfileController" class="App\Controller\ProfileController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Controller\RegistrationController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SettingsProfileController" class="App\Controller\SettingsProfileController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SettingsProfileController" class="App\Controller\SettingsProfileController" autowire="true" abstract="true"/>
+    <service id=".instanceof.App\Controller\SettingsProfileController.0.App\Controller\SettingsProfileController" class="App\Controller\SettingsProfileController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\SettingsProfileController" class="App\Controller\SettingsProfileController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.App\Entity\Comment.0.App\Entity\Comment" class="App\Entity\Comment" autowire="true" abstract="true"/>
@@ -7769,6 +7818,8 @@
     <service id=".abstract.instanceof.App\Form\MicroPostType" class="App\Form\MicroPostType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UserProfileType" class="App\Form\UserProfileType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\UserProfileType" class="App\Form\UserProfileType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\MicroPostRepository" class="App\Repository\MicroPostRepository" autowire="true" abstract="true"/>
@@ -8313,6 +8364,51 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.zHyJIs5" method="withContext"/>
     </service>
+    <service id=".service_locator.W_NOKY8" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userToFollow" type="service_closure" id="App\Entity\User"/>
+        <argument key="doctrine" type="service_closure" id="doctrine"/>
+      </argument>
+    </service>
+    <service id=".service_locator.W_NOKY8.App\Controller\FollowerController::follow()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\FollowerController::follow()"/>
+      <argument>App\Controller\FollowerController::follow()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.W_NOKY8" method="withContext"/>
+    </service>
+    <service id=".service_locator.QJF7hJn" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userToUnfollow" type="service_closure" id="App\Entity\User"/>
+        <argument key="doctrine" type="service_closure" id="doctrine"/>
+      </argument>
+    </service>
+    <service id=".service_locator.QJF7hJn.App\Controller\FollowerController::unfollow()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\FollowerController::unfollow()"/>
+      <argument>App\Controller\FollowerController::unfollow()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.QJF7hJn" method="withContext"/>
+    </service>
+    <service id=".service_locator.G6JJNc7" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="post" type="service_closure" id="App\Entity\MicroPost"/>
+        <argument key="posts" type="service_closure" id="App\Repository\MicroPostRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.G6JJNc7.App\Controller\LikeController::like()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\LikeController::like()"/>
+      <argument>App\Controller\LikeController::like()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.G6JJNc7" method="withContext"/>
+    </service>
+    <service id=".service_locator.G6JJNc7.App\Controller\LikeController::unlike()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\LikeController::unlike()"/>
+      <argument>App\Controller\LikeController::unlike()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.G6JJNc7" method="withContext"/>
+    </service>
     <service id=".service_locator.wa9Zqkq" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8355,13 +8451,6 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.69Raho3" method="withContext"/>
     </service>
-    <service id=".service_locator.G6JJNc7" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="post" type="service_closure" id="App\Entity\MicroPost"/>
-        <argument key="posts" type="service_closure" id="App\Repository\MicroPostRepository"/>
-      </argument>
-    </service>
     <service id=".service_locator.G6JJNc7.App\Controller\MicroPostController::edit()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\MicroPostController::edit()"/>
       <argument>App\Controller\MicroPostController::edit()</argument>
@@ -8380,6 +8469,30 @@
       <argument>App\Controller\MicroPostController::addComment()</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.dkUws00" method="withContext"/>
+    </service>
+    <service id=".service_locator.EWAQaZu" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="user" type="service_closure" id="App\Entity\User"/>
+      </argument>
+    </service>
+    <service id=".service_locator.EWAQaZu.App\Controller\ProfileController::show()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProfileController::show()"/>
+      <argument>App\Controller\ProfileController::show()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.EWAQaZu" method="withContext"/>
+    </service>
+    <service id=".service_locator.EWAQaZu.App\Controller\ProfileController::follows()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProfileController::follows()"/>
+      <argument>App\Controller\ProfileController::follows()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.EWAQaZu" method="withContext"/>
+    </service>
+    <service id=".service_locator.EWAQaZu.App\Controller\ProfileController::followers()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProfileController::followers()"/>
+      <argument>App\Controller\ProfileController::followers()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.EWAQaZu" method="withContext"/>
     </service>
     <service id=".service_locator.tEL1pRK" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -8407,31 +8520,59 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.KHhLDTq" method="withContext"/>
     </service>
-    <service id=".service_locator.tTemZ3Z" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.OzEre6h" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.OzEre6h.App\Controller\SettingsProfileController::profile()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\SettingsProfileController::profile()"/>
+      <argument>App\Controller\SettingsProfileController::profile()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.OzEre6h" method="withContext"/>
+    </service>
+    <service id=".service_locator..O1HvVF" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
+        <argument key="App\Controller\FollowerController::follow" type="service_closure" id=".service_locator.W_NOKY8.App\Controller\FollowerController::follow()"/>
+        <argument key="App\Controller\FollowerController::unfollow" type="service_closure" id=".service_locator.QJF7hJn.App\Controller\FollowerController::unfollow()"/>
+        <argument key="App\Controller\LikeController::like" type="service_closure" id=".service_locator.G6JJNc7.App\Controller\LikeController::like()"/>
+        <argument key="App\Controller\LikeController::unlike" type="service_closure" id=".service_locator.G6JJNc7.App\Controller\LikeController::unlike()"/>
         <argument key="App\Controller\LoginController::index" type="service_closure" id=".service_locator.wa9Zqkq.App\Controller\LoginController::index()"/>
         <argument key="App\Controller\MicroPostController::index" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::index()"/>
         <argument key="App\Controller\MicroPostController::showOne" type="service_closure" id=".service_locator.g2QUtQW.App\Controller\MicroPostController::showOne()"/>
         <argument key="App\Controller\MicroPostController::add" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::add()"/>
         <argument key="App\Controller\MicroPostController::edit" type="service_closure" id=".service_locator.G6JJNc7.App\Controller\MicroPostController::edit()"/>
         <argument key="App\Controller\MicroPostController::addComment" type="service_closure" id=".service_locator.dkUws00.App\Controller\MicroPostController::addComment()"/>
+        <argument key="App\Controller\ProfileController::show" type="service_closure" id=".service_locator.EWAQaZu.App\Controller\ProfileController::show()"/>
+        <argument key="App\Controller\ProfileController::follows" type="service_closure" id=".service_locator.EWAQaZu.App\Controller\ProfileController::follows()"/>
+        <argument key="App\Controller\ProfileController::followers" type="service_closure" id=".service_locator.EWAQaZu.App\Controller\ProfileController::followers()"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()"/>
+        <argument key="App\Controller\SettingsProfileController::profile" type="service_closure" id=".service_locator.OzEre6h.App\Controller\SettingsProfileController::profile()"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
+        <argument key="App\Controller\FollowerController:follow" type="service_closure" id=".service_locator.W_NOKY8.App\Controller\FollowerController::follow()"/>
+        <argument key="App\Controller\FollowerController:unfollow" type="service_closure" id=".service_locator.QJF7hJn.App\Controller\FollowerController::unfollow()"/>
+        <argument key="App\Controller\LikeController:like" type="service_closure" id=".service_locator.G6JJNc7.App\Controller\LikeController::like()"/>
+        <argument key="App\Controller\LikeController:unlike" type="service_closure" id=".service_locator.G6JJNc7.App\Controller\LikeController::unlike()"/>
         <argument key="App\Controller\LoginController:index" type="service_closure" id=".service_locator.wa9Zqkq.App\Controller\LoginController::index()"/>
         <argument key="App\Controller\MicroPostController:index" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::index()"/>
         <argument key="App\Controller\MicroPostController:showOne" type="service_closure" id=".service_locator.g2QUtQW.App\Controller\MicroPostController::showOne()"/>
         <argument key="App\Controller\MicroPostController:add" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::add()"/>
         <argument key="App\Controller\MicroPostController:edit" type="service_closure" id=".service_locator.G6JJNc7.App\Controller\MicroPostController::edit()"/>
         <argument key="App\Controller\MicroPostController:addComment" type="service_closure" id=".service_locator.dkUws00.App\Controller\MicroPostController::addComment()"/>
+        <argument key="App\Controller\ProfileController:show" type="service_closure" id=".service_locator.EWAQaZu.App\Controller\ProfileController::show()"/>
+        <argument key="App\Controller\ProfileController:follows" type="service_closure" id=".service_locator.EWAQaZu.App\Controller\ProfileController::follows()"/>
+        <argument key="App\Controller\ProfileController:followers" type="service_closure" id=".service_locator.EWAQaZu.App\Controller\ProfileController::followers()"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()"/>
+        <argument key="App\Controller\SettingsProfileController:profile" type="service_closure" id=".service_locator.OzEre6h.App\Controller\SettingsProfileController::profile()"/>
       </argument>
     </service>
     <service id=".service_locator.HxALDTI" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8617,12 +8758,13 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.DbhApSW" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.5oHZQqL" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\CommentType" type="service_closure" id="App\Form\CommentType"/>
         <argument key="App\Form\MicroPostType" type="service_closure" id="App\Form\MicroPostType"/>
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
+        <argument key="App\Form\UserProfileType" type="service_closure" id="App\Form\UserProfileType"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="service_closure" id="form.type.file"/>
@@ -9024,9 +9166,21 @@
         <argument key="web_link.http_header_serializer" type="service_closure" id="web_link.http_header_serializer" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.ZyP9f7K.App\Controller\FollowerController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\FollowerController"/>
+      <argument>App\Controller\FollowerController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+    </service>
     <service id=".service_locator.ZyP9f7K.App\Controller\HelloController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\HelloController"/>
       <argument>App\Controller\HelloController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+    </service>
+    <service id=".service_locator.ZyP9f7K.App\Controller\LikeController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\LikeController"/>
+      <argument>App\Controller\LikeController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ZyP9f7K" method="withContext"/>
     </service>
@@ -9042,9 +9196,21 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ZyP9f7K" method="withContext"/>
     </service>
+    <service id=".service_locator.ZyP9f7K.App\Controller\ProfileController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProfileController"/>
+      <argument>App\Controller\ProfileController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+    </service>
     <service id=".service_locator.ZyP9f7K.App\Controller\RegistrationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\RegistrationController"/>
       <argument>App\Controller\RegistrationController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+    </service>
+    <service id=".service_locator.ZyP9f7K.App\Controller\SettingsProfileController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\SettingsProfileController"/>
+      <argument>App\Controller\SettingsProfileController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ZyP9f7K" method="withContext"/>
     </service>
@@ -9240,10 +9406,14 @@
       <call method="allowControllers">
         <argument type="collection">
           <argument>App\Kernel</argument>
+          <argument>App\Controller\FollowerController</argument>
           <argument>App\Controller\HelloController</argument>
+          <argument>App\Controller\LikeController</argument>
           <argument>App\Controller\LoginController</argument>
           <argument>App\Controller\MicroPostController</argument>
+          <argument>App\Controller\ProfileController</argument>
           <argument>App\Controller\RegistrationController</argument>
+          <argument>App\Controller\SettingsProfileController</argument>
           <argument>Doctrine\Bundle\DoctrineBundle\Controller\ProfilerController</argument>
         </argument>
       </call>
@@ -10682,15 +10852,14 @@
     <service id="security.user_providers" alias="security.user.provider.concrete.app_user_provider"/>
     <service id="Symfony\Component\Security\Core\User\UserProviderInterface" alias="security.user.provider.concrete.app_user_provider"/>
     <service id="security.authentication.session_strategy.main" alias="security.authentication.session_strategy"/>
-    <service id="security.user_checker.main" alias="security.user_checker"/>
+    <service id="security.user_checker.main" alias="App\Security\UserChecker"/>
     <service id="security.firewall.context_locator" alias=".service_locator.bsoXAxw"/>
-    <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.tTemZ3Z"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator..O1HvVF"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -10734,13 +10903,17 @@
     <service id="messenger.bus.default" alias="debug.traced.messenger.bus.default"/>
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.n_ENPtW" alias=".service_locator.zHyJIs5"/>
+    <service id=".service_locator.rzTUOsX" alias=".service_locator.W_NOKY8"/>
+    <service id=".service_locator.jeui7Gv" alias=".service_locator.QJF7hJn"/>
+    <service id=".service_locator.vX3bifc" alias=".service_locator.G6JJNc7"/>
     <service id=".service_locator.sqmjYUP" alias=".service_locator.wa9Zqkq"/>
     <service id=".service_locator.7oKMwSB" alias=".service_locator.69Raho3"/>
     <service id=".service_locator.P2.Pka." alias=".service_locator.g2QUtQW"/>
-    <service id=".service_locator.vX3bifc" alias=".service_locator.G6JJNc7"/>
     <service id=".service_locator.Q08VjYy" alias=".service_locator.dkUws00"/>
+    <service id=".service_locator.JZ84LHK" alias=".service_locator.EWAQaZu"/>
     <service id=".service_locator.o4KKgIJ" alias=".service_locator.tEL1pRK"/>
     <service id=".service_locator.l6GrDWv" alias=".service_locator.KHhLDTq"/>
+    <service id=".service_locator.hNMhKaf" alias=".service_locator.OzEre6h"/>
     <service id=".service_locator.9nvaCmp" alias=".service_locator.ZyP9f7K"/>
   </services>
 </container>
