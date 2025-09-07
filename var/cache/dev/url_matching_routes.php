@@ -19,6 +19,8 @@ return [
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\LoginController::index'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\LoginController::logout'], null, null, null, false, false, null]],
         '/micro-post' => [[['_route' => 'app_micro_post', '_controller' => 'App\\Controller\\MicroPostController::index'], null, null, null, false, false, null]],
+        '/micro-post/top-liked' => [[['_route' => 'app_micro_post_topliked', '_controller' => 'App\\Controller\\MicroPostController::topLiked'], null, null, null, false, false, null]],
+        '/micro-post/follows' => [[['_route' => 'app_micro_post_follows', '_controller' => 'App\\Controller\\MicroPostController::follows'], null, null, null, false, false, null]],
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
         '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
         '/settings/profile' => [[['_route' => 'app_settings_profile', '_controller' => 'App\\Controller\\SettingsProfileController::profile'], null, null, null, false, false, null]],
@@ -48,21 +50,21 @@ return [
                 .'|/(\\d+)?(*:259)'
                 .'|/m(?'
                     .'|essages/(\\d+)(*:285)'
-                    .'|icro\\-post/([^/]++)(?'
-                        .'|(*:315)'
-                        .'|/(?'
-                            .'|edit(*:331)'
-                            .'|comment(*:346)'
+                    .'|icro\\-post/(?'
+                        .'|(\\d+)(*:312)'
+                        .'|([^/]++)/(?'
+                            .'|edit(*:336)'
+                            .'|comment(*:351)'
                         .')'
                     .')'
                 .')'
-                .'|/like/([^/]++)(*:371)'
-                .'|/unlike/([^/]++)(*:395)'
+                .'|/like/([^/]++)(*:376)'
+                .'|/unlike/([^/]++)(*:400)'
                 .'|/profile/([^/]++)(?'
-                    .'|(*:423)'
+                    .'|(*:428)'
                     .'|/follow(?'
-                        .'|s(*:442)'
-                        .'|ers(*:453)'
+                        .'|s(*:447)'
+                        .'|ers(*:458)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -80,14 +82,14 @@ return [
         244 => [[['_route' => 'app_unfollow', '_controller' => 'App\\Controller\\FollowerController::unfollow'], ['id'], null, null, false, true, null]],
         259 => [[['_route' => 'app_index', 'limit' => '3', '_controller' => 'App\\Controller\\HelloController::index'], ['limit'], null, null, false, true, null]],
         285 => [[['_route' => 'app_show_one', '_controller' => 'App\\Controller\\HelloController::showOne'], ['id'], null, null, false, true, null]],
-        315 => [[['_route' => 'app_micro_post_show', '_controller' => 'App\\Controller\\MicroPostController::showOne'], ['post'], null, null, false, true, null]],
-        331 => [[['_route' => 'app_micro_post_edit', '_controller' => 'App\\Controller\\MicroPostController::edit'], ['post'], null, null, false, false, null]],
-        346 => [[['_route' => 'app_micro_post_comment', '_controller' => 'App\\Controller\\MicroPostController::addComment'], ['post'], null, null, false, false, null]],
-        371 => [[['_route' => 'app_like', '_controller' => 'App\\Controller\\LikeController::like'], ['id'], null, null, false, true, null]],
-        395 => [[['_route' => 'app_unlike', '_controller' => 'App\\Controller\\LikeController::unlike'], ['id'], null, null, false, true, null]],
-        423 => [[['_route' => 'app_profile', '_controller' => 'App\\Controller\\ProfileController::show'], ['id'], null, null, false, true, null]],
-        442 => [[['_route' => 'app_profile_follows', '_controller' => 'App\\Controller\\ProfileController::follows'], ['id'], null, null, false, false, null]],
-        453 => [
+        312 => [[['_route' => 'app_micro_post_show', '_controller' => 'App\\Controller\\MicroPostController::showOne'], ['post'], null, null, false, true, null]],
+        336 => [[['_route' => 'app_micro_post_edit', '_controller' => 'App\\Controller\\MicroPostController::edit'], ['post'], null, null, false, false, null]],
+        351 => [[['_route' => 'app_micro_post_comment', '_controller' => 'App\\Controller\\MicroPostController::addComment'], ['post'], null, null, false, false, null]],
+        376 => [[['_route' => 'app_like', '_controller' => 'App\\Controller\\LikeController::like'], ['id'], null, null, false, true, null]],
+        400 => [[['_route' => 'app_unlike', '_controller' => 'App\\Controller\\LikeController::unlike'], ['id'], null, null, false, true, null]],
+        428 => [[['_route' => 'app_profile', '_controller' => 'App\\Controller\\ProfileController::show'], ['id'], null, null, false, true, null]],
+        447 => [[['_route' => 'app_profile_follows', '_controller' => 'App\\Controller\\ProfileController::follows'], ['id'], null, null, false, false, null]],
+        458 => [
             [['_route' => 'app_profile_followers', '_controller' => 'App\\Controller\\ProfileController::followers'], ['id'], null, null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],

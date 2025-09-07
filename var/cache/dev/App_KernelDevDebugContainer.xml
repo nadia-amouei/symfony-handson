@@ -536,7 +536,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator..O1HvVF"/>
+      <argument type="service" id=".service_locator.MoFoN79"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3608,7 +3608,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator..O1HvVF"/>
+      <argument type="service" id=".service_locator.MoFoN79"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -8421,18 +8421,6 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.wa9Zqkq" method="withContext"/>
     </service>
-    <service id=".service_locator.69Raho3" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="posts" type="service_closure" id="App\Repository\MicroPostRepository"/>
-      </argument>
-    </service>
-    <service id=".service_locator.69Raho3.App\Controller\MicroPostController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\MicroPostController::index()"/>
-      <argument>App\Controller\MicroPostController::index()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.69Raho3" method="withContext"/>
-    </service>
     <service id=".service_locator.g2QUtQW" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8444,6 +8432,12 @@
       <argument>App\Controller\MicroPostController::showOne()</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.g2QUtQW" method="withContext"/>
+    </service>
+    <service id=".service_locator.69Raho3" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="posts" type="service_closure" id="App\Repository\MicroPostRepository"/>
+      </argument>
     </service>
     <service id=".service_locator.69Raho3.App\Controller\MicroPostController::add()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\MicroPostController::add()"/>
@@ -8470,17 +8464,42 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.dkUws00" method="withContext"/>
     </service>
+    <service id=".service_locator.69Raho3.App\Controller\MicroPostController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\MicroPostController::index()"/>
+      <argument>App\Controller\MicroPostController::index()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.69Raho3" method="withContext"/>
+    </service>
+    <service id=".service_locator.69Raho3.App\Controller\MicroPostController::topLiked()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\MicroPostController::topLiked()"/>
+      <argument>App\Controller\MicroPostController::topLiked()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.69Raho3" method="withContext"/>
+    </service>
+    <service id=".service_locator.69Raho3.App\Controller\MicroPostController::follows()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\MicroPostController::follows()"/>
+      <argument>App\Controller\MicroPostController::follows()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.69Raho3" method="withContext"/>
+    </service>
+    <service id=".service_locator.tQsI1wS" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="user" type="service_closure" id="App\Entity\User"/>
+        <argument key="posts" type="service_closure" id="App\Repository\MicroPostRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.tQsI1wS.App\Controller\ProfileController::show()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProfileController::show()"/>
+      <argument>App\Controller\ProfileController::show()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.tQsI1wS" method="withContext"/>
+    </service>
     <service id=".service_locator.EWAQaZu" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="user" type="service_closure" id="App\Entity\User"/>
       </argument>
-    </service>
-    <service id=".service_locator.EWAQaZu.App\Controller\ProfileController::show()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\ProfileController::show()"/>
-      <argument>App\Controller\ProfileController::show()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.EWAQaZu" method="withContext"/>
     </service>
     <service id=".service_locator.EWAQaZu.App\Controller\ProfileController::follows()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ProfileController::follows()"/>
@@ -8532,7 +8551,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.OzEre6h" method="withContext"/>
     </service>
-    <service id=".service_locator..O1HvVF" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.MoFoN79" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -8544,12 +8563,14 @@
         <argument key="App\Controller\LikeController::like" type="service_closure" id=".service_locator.G6JJNc7.App\Controller\LikeController::like()"/>
         <argument key="App\Controller\LikeController::unlike" type="service_closure" id=".service_locator.G6JJNc7.App\Controller\LikeController::unlike()"/>
         <argument key="App\Controller\LoginController::index" type="service_closure" id=".service_locator.wa9Zqkq.App\Controller\LoginController::index()"/>
-        <argument key="App\Controller\MicroPostController::index" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::index()"/>
         <argument key="App\Controller\MicroPostController::showOne" type="service_closure" id=".service_locator.g2QUtQW.App\Controller\MicroPostController::showOne()"/>
         <argument key="App\Controller\MicroPostController::add" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::add()"/>
         <argument key="App\Controller\MicroPostController::edit" type="service_closure" id=".service_locator.G6JJNc7.App\Controller\MicroPostController::edit()"/>
         <argument key="App\Controller\MicroPostController::addComment" type="service_closure" id=".service_locator.dkUws00.App\Controller\MicroPostController::addComment()"/>
-        <argument key="App\Controller\ProfileController::show" type="service_closure" id=".service_locator.EWAQaZu.App\Controller\ProfileController::show()"/>
+        <argument key="App\Controller\MicroPostController::index" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::index()"/>
+        <argument key="App\Controller\MicroPostController::topLiked" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::topLiked()"/>
+        <argument key="App\Controller\MicroPostController::follows" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::follows()"/>
+        <argument key="App\Controller\ProfileController::show" type="service_closure" id=".service_locator.tQsI1wS.App\Controller\ProfileController::show()"/>
         <argument key="App\Controller\ProfileController::follows" type="service_closure" id=".service_locator.EWAQaZu.App\Controller\ProfileController::follows()"/>
         <argument key="App\Controller\ProfileController::followers" type="service_closure" id=".service_locator.EWAQaZu.App\Controller\ProfileController::followers()"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()"/>
@@ -8562,12 +8583,14 @@
         <argument key="App\Controller\LikeController:like" type="service_closure" id=".service_locator.G6JJNc7.App\Controller\LikeController::like()"/>
         <argument key="App\Controller\LikeController:unlike" type="service_closure" id=".service_locator.G6JJNc7.App\Controller\LikeController::unlike()"/>
         <argument key="App\Controller\LoginController:index" type="service_closure" id=".service_locator.wa9Zqkq.App\Controller\LoginController::index()"/>
-        <argument key="App\Controller\MicroPostController:index" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::index()"/>
         <argument key="App\Controller\MicroPostController:showOne" type="service_closure" id=".service_locator.g2QUtQW.App\Controller\MicroPostController::showOne()"/>
         <argument key="App\Controller\MicroPostController:add" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::add()"/>
         <argument key="App\Controller\MicroPostController:edit" type="service_closure" id=".service_locator.G6JJNc7.App\Controller\MicroPostController::edit()"/>
         <argument key="App\Controller\MicroPostController:addComment" type="service_closure" id=".service_locator.dkUws00.App\Controller\MicroPostController::addComment()"/>
-        <argument key="App\Controller\ProfileController:show" type="service_closure" id=".service_locator.EWAQaZu.App\Controller\ProfileController::show()"/>
+        <argument key="App\Controller\MicroPostController:index" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::index()"/>
+        <argument key="App\Controller\MicroPostController:topLiked" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::topLiked()"/>
+        <argument key="App\Controller\MicroPostController:follows" type="service_closure" id=".service_locator.69Raho3.App\Controller\MicroPostController::follows()"/>
+        <argument key="App\Controller\ProfileController:show" type="service_closure" id=".service_locator.tQsI1wS.App\Controller\ProfileController::show()"/>
         <argument key="App\Controller\ProfileController:follows" type="service_closure" id=".service_locator.EWAQaZu.App\Controller\ProfileController::follows()"/>
         <argument key="App\Controller\ProfileController:followers" type="service_closure" id=".service_locator.EWAQaZu.App\Controller\ProfileController::followers()"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()"/>
@@ -10859,7 +10882,7 @@
     <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator..O1HvVF"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.MoFoN79"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -10907,9 +10930,10 @@
     <service id=".service_locator.jeui7Gv" alias=".service_locator.QJF7hJn"/>
     <service id=".service_locator.vX3bifc" alias=".service_locator.G6JJNc7"/>
     <service id=".service_locator.sqmjYUP" alias=".service_locator.wa9Zqkq"/>
-    <service id=".service_locator.7oKMwSB" alias=".service_locator.69Raho3"/>
     <service id=".service_locator.P2.Pka." alias=".service_locator.g2QUtQW"/>
+    <service id=".service_locator.7oKMwSB" alias=".service_locator.69Raho3"/>
     <service id=".service_locator.Q08VjYy" alias=".service_locator.dkUws00"/>
+    <service id=".service_locator.ma3KgUq" alias=".service_locator.tQsI1wS"/>
     <service id=".service_locator.JZ84LHK" alias=".service_locator.EWAQaZu"/>
     <service id=".service_locator.o4KKgIJ" alias=".service_locator.tEL1pRK"/>
     <service id=".service_locator.l6GrDWv" alias=".service_locator.KHhLDTq"/>

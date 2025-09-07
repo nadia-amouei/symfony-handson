@@ -97,6 +97,10 @@ class __TwigTemplate_eb6dfec989acf75d64e6f9c7dcdb5d05 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
+        yield Twig\Extension\CoreExtension::include($this->env, $context, "micro_post/_post_tabs.html.twig");
+        yield "
+";
+        // line 7
         yield Twig\Extension\CoreExtension::include($this->env, $context, "micro_post/_post_list.html.twig");
         yield "
 ";
@@ -130,7 +134,7 @@ class __TwigTemplate_eb6dfec989acf75d64e6f9c7dcdb5d05 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  104 => 7,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -140,6 +144,7 @@ class __TwigTemplate_eb6dfec989acf75d64e6f9c7dcdb5d05 extends Template
 {% block title %}All Posts{% endblock %}
 
 {% block body %}
+{{ include('micro_post/_post_tabs.html.twig') }}
 {{ include ('micro_post/_post_list.html.twig') }}
 {% endblock %}
 ", "micro_post/index.html.twig", "/Users/nadia/Desktop/Symfony/test/symfony-handson/templates/micro_post/index.html.twig");
